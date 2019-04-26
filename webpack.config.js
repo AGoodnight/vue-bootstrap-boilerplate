@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path')
 
 module.exports = {
   entry:'./src/index.js',
@@ -9,6 +10,10 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
+        include:[
+          path.resolve(__dirname, 'src'),
+          require.resolve('bootstrap-vue')
+        ], // Whitelist `bootstrap-vue`
         use: {
           loader: "babel-loader"
         }
@@ -34,7 +39,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: path.resolve(__dirname, "src", "index.html"),
       filename: "./index.html"
     }),
     new MiniCssExtractPlugin({
