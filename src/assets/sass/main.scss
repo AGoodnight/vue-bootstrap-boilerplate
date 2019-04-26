@@ -7,10 +7,15 @@ $grid-breakpoints: (
   xl: 1300px
 );
 
+//https://getbootstrap.com/docs/4.3/getting-started/theming/
+$theme-colors: (
+  "dark":#2e3e4e,
+);
+
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'node_modules/bootstrap-vue/src/index.scss';
 
 body{
   background:#eee;
-  color:#555;
+  color:#333;
 }
