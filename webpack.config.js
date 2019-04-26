@@ -1,12 +1,17 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require('path')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const path = require('path');
 
 module.exports = {
   entry:'./src/index.js',
   devtool: "source-map",
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -17,6 +22,13 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader'
+        ]
       },
       {
         test: /\.scss$/,
@@ -38,20 +50,21 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, "src", "index.html"),
-      filename: "./index.html"
-    }),
+    new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
         filename: "[name].css",
         chunkFilename: "[id].css"
+    }),
+    new HtmlWebPackPlugin({
+      template: path.resolve(__dirname, "src", "index.html"),
+      filename: "./index.html"
     })
   ],
   resolve: {
     alias: {
-      vue$:"vue/dist/vue.esm.js"
+      vue$:"vue/dist/vue.esm.js",
     }
   }
 };
