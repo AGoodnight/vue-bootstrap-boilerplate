@@ -34,19 +34,41 @@
           </dd>
         </dl>
       </p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-
+      <a href="#" class="btn btn-primary" v-on:click='increment'>Add</a>
+      <a href="#" class="btn btn-primary" v-on:click='decrement'>Remove</a>
+      <p>{{countPlusLocalState}}</p>
     </div>
   </div>
   </div>
 </template>
 
 <script>
+
+  import { mapState } from 'vuex';
+  import store from '../store/store';
+
   export default {
     name: 'home',
-    data () {
-      return {
-        msg: 'This is a homepage'
+    store,
+    computed:mapState({
+      count: state => state.count,
+      countAlias:'count',
+      countPlusLocalState(state){
+        return state.count + this.localCount
+      }
+    }),
+    methods:{
+      increment(){
+        store.commit('increment');
+      },
+      decrement(){
+        store.commit('decrement');
+      }
+    },
+    data(){
+      return{
+        msg: 'This is a homepage',
+        localCount:12
       }
     }
   }

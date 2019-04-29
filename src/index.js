@@ -1,10 +1,14 @@
-import './assets/sass/main.scss';
 import Vue from "vue";
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+
 import App from './App.vue'
 import router from './router'
-import BootstrapVue from 'bootstrap-vue'
-
-Vue.use(BootstrapVue)
+import './assets/sass/main.scss';
+import 'es6-promise/auto'
 
 Vue.config.productionTip = false
 
