@@ -8,31 +8,38 @@
       </li>
     </ol>
     <button v-on:click="addName">Add a Name</button>
+    <button v-on:click="removeName">Remove a Name</button>
   </div>
 </template>
 
 <script>
+
+  import { mapState } from 'vuex';
+  import store from '../store/store';
+
   export default {
     name: 'about',
-    computed: {
-    now: function () {
-        return Date.now()
+    store,
+    computed:mapState({
+      items(state){
+        return state.names;
+      },
+      now() {
+        return Date.now();
       }
-    },
+    }),
     methods:{
       addName(){
-        this.items.push("New Name")
+        store.commit('addName',{
+          name:"newName"
+        });
+      },
+      removeName(){
+        store.commit('removeName');
       }
     },
     data () {
       return {
-        items:[
-          "Bilbo",
-          "Gandalf",
-          "Greyworm",
-          "Danny",
-          "Samwise"
-        ],
         headerID: "about-us-header",
         msg: 'This is an About Page'
       }
