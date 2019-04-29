@@ -1,4 +1,4 @@
-# Vue Boilerplate
+# Vue Boostrap Boilerplate
 
 This is a simple website/webapp setup.
 
