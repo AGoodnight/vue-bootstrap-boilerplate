@@ -16,6 +16,7 @@
 
   import { mapState } from 'vuex';
   import store from '../store/store';
+  import axios from 'axios';
 
   export default {
     name: 'about',
@@ -41,7 +42,7 @@
     data () {
       return {
         headerID: "about-us-header",
-        msg: 'This is an About Page'
+        msg: 'This is an About Page',
       }
     }
   }
